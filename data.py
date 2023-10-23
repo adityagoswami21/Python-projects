@@ -5,7 +5,8 @@ question_data ={
       "category": "General Knowledge",
       "type": "boolean",
       "difficulty": "easy",
-      "question": "Video streaming website YouTube was purchased in it&#039;s entirety by Facebook for US$1.65 billion in stock.",
+      "question": "Video streaming website YouTube was purchased in it&#039;s entirety by Facebook "
+                  "for US$1.65 billion in stock.",
       "correct_answer": "False",
       "incorrect_answers": [
         "True"
@@ -85,7 +86,8 @@ question_data ={
       "category": "Entertainment: Video Games",
       "type": "boolean",
       "difficulty": "easy",
-      "question": "In Until Dawn, both characters Sam and Mike cannot be killed under any means until the final chapter of the game.",
+      "question": "In Until Dawn, both characters Sam and Mike cannot be killed under any means until the final"
+                  " chapter of the game.",
       "correct_answer": "True",
       "incorrect_answers": [
         "False"
@@ -95,7 +97,8 @@ question_data ={
       "category": "Science: Computers",
       "type": "boolean",
       "difficulty": "easy",
-      "question": "The Python programming language gets its name from the British comedy group &quot;Monty Python.&quot;",
+      "question": "The Python programming language gets its name from the British comedy group &quot;Monty"
+                  " Python.&quot;",
       "correct_answer": "True",
       "incorrect_answers": [
         "False"
