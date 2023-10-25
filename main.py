@@ -1,5 +1,4 @@
 from turtle import Turtle, Screen
-import turtle
 import random
 screen = Screen()
 
@@ -17,6 +16,25 @@ for player in range(0,6):
     new_turtle.penup()
     new_turtle.goto(x=-230, y=y_positions[player])
     turtles.append(new_turtle)
+
+if user_bet:
+    is_race_on = True
+
+while is_race_on:
+    for turtle in turtles:
+        random_pace = random.randint(0,10)
+        turtle.fd(random_pace)
+        if turtle.xcor() > 230:
+            is_race_on = False
+            winning_color = turtle.pencolor()
+            if winning_color == user_bet:
+                print(f"You win, the winner is {winning_color}")
+            else:
+                print(f"You loose, the winner is {winning_color}")
+            break
+
+
+
 
 
 
