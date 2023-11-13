@@ -3,10 +3,14 @@
   <component name="ProjectModuleManager">
     <modules>
 <<<<<<< HEAD
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/spirograph.iml" filepath="$PROJECT_DIR$/.idea/spirograph.iml" />
 =======
       <module fileurl="file://$PROJECT_DIR$/.idea/quiz-game-start.iml" filepath="$PROJECT_DIR$/.idea/quiz-game-start.iml" />
 >>>>>>> quiz_game/main
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/turtle-race-start.iml" filepath="$PROJECT_DIR$/.idea/turtle-race-start.iml" />
+>>>>>>> turtle_python/main
     </modules>
   </component>
 </project>
