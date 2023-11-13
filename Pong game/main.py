@@ -1,10 +1,12 @@
 from turtle import Turtle, Screen
 from paddle import Paddle
 from ball import Ball
+from scoreboard import Scoreboard
 import time
 turtle = Turtle()
 screen = Screen()
 ball = Ball()
+scoreboard = Scoreboard()
 screen.setup(width=800, height=600)
 screen.bgcolor("black")
 screen.title("Pong Game")
@@ -20,7 +22,7 @@ screen.onkey(key="s", fun=l_paddle.move_down)
 
 game_is_on = True
 while game_is_on:
-    time.sleep(0.1)
+    time.sleep(ball.move_speed)
     screen.update()
     ball.move()
 
@@ -34,7 +36,9 @@ while game_is_on:
     # Detect if R paddle misses
     elif ball.xcor() > 400:
         ball.restart()
+        scoreboard.l_winner()
     # Detect if L paddle misses
     elif ball.xcor() < -400:
         ball.restart()
+        scoreboard.r_winner()
 screen.exitonclick()
