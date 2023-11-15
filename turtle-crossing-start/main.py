@@ -24,7 +24,7 @@ while game_is_on:
         player.go_to_start()
         car_manager.level_up()
         scoreboard.clear()
-        scoreboard.level_score()
+        scoreboard.inc_level()
         # scoreboard.new_level += 1
     # Detect collision with car
     for car in car_manager.all_cars:
