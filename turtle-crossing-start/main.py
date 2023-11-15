@@ -9,10 +9,12 @@ screen = Screen()
 screen.setup(width=600, height=600)
 screen.tracer(0)
 player = Player()
-# car_manager = CarManager()
+car_manager = CarManager()
 game_is_on = True
 screen.listen()
 screen.onkey(fun=player.move_fd, key="Up")
 while game_is_on:
     time.sleep(0.1)
     screen.update()
+    car_manager.display_cars()
+    car_manager.move_cars()
