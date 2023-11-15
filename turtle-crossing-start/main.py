@@ -11,6 +11,7 @@ screen.tracer(0)
 game_is_on = True
 player = Player()
 car_manager = CarManager()
+scoreboard = Scoreboard()
 screen.listen()
 screen.onkey(fun=player.move_fd, key="Up")
 while game_is_on:
@@ -22,9 +23,12 @@ while game_is_on:
     if player.new_level():
         player.go_to_start()
         car_manager.level_up()
+        scoreboard.clear()
+        scoreboard.level_score()
+        # scoreboard.new_level += 1
     # Detect collision with car
     for car in car_manager.all_cars:
         if car.distance(player) < 20:
             game_is_on = False
-
+            scoreboard.game_over()
 screen.exitonclick()
