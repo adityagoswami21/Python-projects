@@ -18,8 +18,10 @@ while game_is_on:
     screen.update()
     car_manager.display_cars()
     car_manager.move_cars()
+    # Detecting for new level
     if player.new_level():
         player.go_to_start()
+        car_manager.level_up()
     # Detect collision with car
     for car in car_manager.all_cars:
         if car.distance(player) < 20:
