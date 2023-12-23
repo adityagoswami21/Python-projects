@@ -11,5 +11,7 @@ for name in names:
     name = name.rstrip("\n")
     # replacing [name] with actual names one by one
     x = txt.replace("[name]", name)
-    # printing each letter
-    print(x)
+    # creating new files with respective name and entering their respective letters
+    with open(f"./Output/ReadyToSend/{name}.txt", "w") as enter:
+        enter.write(x)
+
