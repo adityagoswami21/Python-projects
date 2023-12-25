@@ -9,3 +9,6 @@ data_dict = {
     "Fur Color": ["Gray", "Cinnamon", "Black"],
     "Count": [grey_squirrels, red_squirrels, black_squirrels]
 }
+
+df = pandas.DataFrame(data_dict)
+df.to_csv("squirrel_count.csv")
