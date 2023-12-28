@@ -16,5 +16,5 @@ if answer_state in all_states:
     marker.penup()
     state_data = data[data.state == answer_state]
     marker.goto(int(state_data.x), int(state_data.y))
-    marker.write(state_data.state)
+    marker.write(answer_state)
 screen.exitonclick()
