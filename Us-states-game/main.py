@@ -11,7 +11,7 @@ data = pandas.read_csv("50_states.csv")
 all_states = data.state.values
 guessed_states = []
 while len(guessed_states) < 50:
-    answer_state = screen.textinput(title="Guess the State", prompt="What's the name of the state?").title()
+    answer_state = screen.textinput(title=f"{len(guessed_states)}/50 States", prompt="What's the name of the state?").title()
     if answer_state in all_states:
         guessed_states.append(answer_state)
         marker = turtle.Turtle()
@@ -21,6 +21,12 @@ while len(guessed_states) < 50:
         marker.goto(int(state_data.x), int(state_data.y))
         marker.write(answer_state)
     elif answer_state == "Exit":
+        missing_state = []
+        for state in all_states:
+            if state not in guessed_states:
+                missing_state.append(state)
+        missing_data = pandas.DataFrame(missing_state)
+        missing_data.to_csv("missed states.csv")
         break
 
 screen.exitonclick()
