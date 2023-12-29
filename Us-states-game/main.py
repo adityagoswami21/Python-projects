@@ -9,12 +9,18 @@ turtle.shape(image)
 
 data = pandas.read_csv("50_states.csv")
 all_states = data.state.values
-answer_state = screen.textinput(title="Guess the State", prompt="What's the name of the state?").capitalize()
-if answer_state in all_states:
-    marker = turtle.Turtle()
-    marker.hideturtle()
-    marker.penup()
-    state_data = data[data.state == answer_state]
-    marker.goto(int(state_data.x), int(state_data.y))
-    marker.write(answer_state)
+guessed_states = []
+while len(guessed_states) < 50:
+    answer_state = screen.textinput(title="Guess the State", prompt="What's the name of the state?").title()
+    if answer_state in all_states:
+        guessed_states.append(answer_state)
+        marker = turtle.Turtle()
+        marker.hideturtle()
+        marker.penup()
+        state_data = data[data.state == answer_state]
+        marker.goto(int(state_data.x), int(state_data.y))
+        marker.write(answer_state)
+    elif answer_state == "Exit":
+        break
+
 screen.exitonclick()
