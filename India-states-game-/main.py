@@ -18,5 +18,9 @@ while len(guessed_state) < 28:
         state_data = data[data.state == answer_state]
         marker.goto(int(state_data.x), int(state_data.y))
         marker.write(answer_state)
-
+    elif answer_state == "Exit":
+        missed_state = [state for state in all_states if state not in guessed_state]
+        missed_data = pd.DataFrame(missed_state)
+        missed_data.to_csv("missed_states.csv")
+        break
 screen.exitonclick()
