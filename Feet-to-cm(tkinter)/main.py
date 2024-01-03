@@ -24,9 +24,12 @@ Cm_label.grid(column=2, row=1)
 
 
 def conversion():
-    num = float(entry.get())
-    cm_value = num * 30.48
-    con_dig['text'] = f"{cm_value:.2f}"
+    try:
+        num = float(entry.get())
+        cm_value = num * 30.48
+        con_dig['text'] = f"{cm_value:.2f}"
+    except ValueError:
+        con_dig['text'] = f"{con_dig:.2f}"
 
 
 calc_button = Button(text="Calculate",command=conversion, font=("Arrus BT", 15, "bold"))
