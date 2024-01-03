@@ -15,4 +15,14 @@ entry.grid(column=1, row=0)
 feet_label = Label(text="Feet", font=("Arrus BT", 15, "bold"))
 feet_label.grid(column=2, row=0)
 feet_label.config(padx=10, pady=10)
+
+con_dig = Label(text="0", font=("Arrus BT", 15, "bold"))
+con_dig.grid(column=1, row=1)
+
+Cm_label = Label(text="Cm", font=("Arrus BT", 15, "bold"))
+Cm_label.grid(column=2, row=1)
+
+calc_button = Button(text="Calculate", font=("Arrus BT", 15, "bold"))
+calc_button.grid(column=1, row=2)
+
 window.mainloop()
