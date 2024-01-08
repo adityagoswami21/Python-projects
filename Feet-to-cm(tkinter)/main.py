@@ -29,7 +29,7 @@ def conversion():
         cm_value = num * 30.48
         con_dig['text'] = f"{cm_value:.2f}"
     except ValueError:
-        con_dig['text'] = f"{con_dig:.2f}"
+        con_dig['text'] = "Invalid input"
 
 
 calc_button = Button(text="Calculate",command=conversion, font=("Arrus BT", 15, "bold"))
