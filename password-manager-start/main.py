@@ -50,9 +50,12 @@ def save():
                                                               f" {password} \nIs it ok to save?")
         if is_ok:
             with open('data.json', 'r') as data:
-                # json.dump(new_data, data, indent=4)
+
                 content = json.load(data)
-                print(content)
+                content.update(new_data)
+            with open('data.json', 'w') as data:
+                json.dump(content, data, indent=4)
+
                 web_entry.delete(0, END)
                 name_entry.delete(0, END)
                 pas_entry.delete(0, END)
