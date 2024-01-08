@@ -1,10 +1,13 @@
+import json
 from tkinter import *
 from tkinter import messagebox
 import random
 import pyperclip
 # ---------------------------- PASSWORD GENERATOR ------------------------------- #
 
-letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
+           'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R',
+           'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 numbers = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 symbols = ['!', '#', '$', '%', '&', '(', ')', '*', '+']
 
@@ -33,15 +36,21 @@ def save():
     website = web_entry.get()
     name = name_entry.get()
     password = pas_entry.get()
+    new_data = {
+        website: {
+            'email': name,
+            'password': password
+        }
+    }
 
-    if len(website) or len(password) == 0:
+    if len(website) == 0 or len(password) == 0:
         messagebox.showerror(title="Oops!", message="Please fill the information!")
     else:
         is_ok = messagebox.askokcancel(title=website, message=f"following are the details:\nEmail:{name}"f"\nPassword:"
                                                               f" {password} \nIs it ok to save?")
         if is_ok:
-            with open('data.txt', 'a') as data:
-                data.write(f"Website:{website} | Username/email:{name} | Password:{password}\n")
+            with open('data.json', 'w') as data:
+                json.dump(new_data, data, indent=4)
                 web_entry.delete(0, END)
                 name_entry.delete(0, END)
                 pas_entry.delete(0, END)
