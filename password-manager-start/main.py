@@ -34,12 +34,17 @@ def password_generator():
 
 def find_password():
     website = web_entry.get()
-    with open("data.json", 'r') as doc_file:
-        n = json.load(doc_file)
-
+    try:
+        with open("data.json", 'r') as doc_file:
+            n = json.load(doc_file)
+    except FileNotFoundError:
+        messagebox.showinfo(title="Oops!", message="No Data File Found.")
+    else:
         if website in n:
             messagebox.showinfo(title="Your Password", message=f"website's name: {website}\n "
                                                                f"Password: {n[website]['password']}")
+        else:
+            messagebox.showerror(title="Error", message=f"No details for {website} exists.")
 
 
 def save():
