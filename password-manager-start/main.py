@@ -32,6 +32,16 @@ def password_generator():
 # ---------------------------- SAVE PASSWORD ------------------------------- #
 
 
+def find_password():
+    website = web_entry.get()
+    with open("data.json", 'r') as doc_file:
+        n = json.load(doc_file)
+
+        if website in n:
+            messagebox.showinfo(title="Your Password", message=f"website's name: {website}\n "
+                                                               f"Password: {n[website]['password']}")
+
+
 def save():
     website = web_entry.get()
     name = name_entry.get()
@@ -88,8 +98,8 @@ pas_txt = Label(text="Password:")
 pas_txt.config(pady=10, padx=10)
 pas_txt.grid(column=0, row=3)
 
-web_entry = Entry(width=35)
-web_entry.grid(row=1, column=1, columnspan=2)
+web_entry = Entry(width=21)
+web_entry.grid(row=1, column=1)
 
 name_entry = Entry(width=35)
 name_entry.grid(column=1, row=2, columnspan=2)
@@ -103,4 +113,7 @@ gen_button.grid(column=2, row=3)
 
 add_button = Button(text="Add", width=36, command=save)
 add_button.grid(column=1, row=4, columnspan=2)
+
+search_button = Button(text="Search", width=15, command=find_password)
+search_button.grid(column=2, row=1)
 window.mainloop()
