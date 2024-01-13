@@ -12,8 +12,8 @@ def next_card():
     global current_card, flip_timer
     window.after_cancel(flip_timer)
     current_card = random.choice(to_learn)
-    canvas.itemconfig(lang_display, text="Italian")
-    canvas.itemconfig(word_display, text=current_card["Italian"])
+    canvas.itemconfig(lang_display, text="Italian", fill="black")
+    canvas.itemconfig(word_display, text=current_card["Italian"], fill="black")
     canvas.itemconfig(card_front, image=my_image_3)
     flip_timer = window.after(3000, func=flip_card)
 
