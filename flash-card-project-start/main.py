@@ -3,7 +3,7 @@ import random
 import pandas as pd
 BACKGROUND_COLOR = "#B1DDC6"
 
-data = pd.read_csv("./data/Italian_words.csv")
+data = pd.read_csv("./data/words_to_learn.csv")
 to_learn = data.to_dict(orient="records")
 current_card = {}
 
@@ -16,6 +16,14 @@ def next_card():
     canvas.itemconfig(word_display, text=current_card["Italian"], fill="black")
     canvas.itemconfig(card_front, image=my_image_3)
     flip_timer = window.after(3000, func=flip_card)
+
+
+def is_known():
+    to_learn.remove(current_card)
+    # print(len(to_learn))
+    data = pd.DataFrame(to_learn)
+    data.to_csv("data/words_to_learn.csv")
+    next_card()
 
 
 def flip_card():
@@ -44,7 +52,7 @@ wrong_button = Button(image=my_image, highlightthickness=0, command=next_card)
 wrong_button.grid(column=0, row=1)
 
 my_image_2 = PhotoImage(file="./images/right.png")
-right_button = Button(image=my_image_2, highlightthickness=0, command=next_card)
+right_button = Button(image=my_image_2, highlightthickness=0, command=is_known)
 right_button.grid(column=1, row=1)
 next_card()
 
