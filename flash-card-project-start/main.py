@@ -2,10 +2,15 @@ from tkinter import *
 import random
 import pandas as pd
 BACKGROUND_COLOR = "#B1DDC6"
-
-data = pd.read_csv("./data/words_to_learn.csv")
-to_learn = data.to_dict(orient="records")
 current_card = {}
+to_learn = {}
+try:
+    data = pd.read_csv("./data/words_to_learn.csv")
+except FileNotFoundError:
+    original_data = pd.read_csv("data/Italian_words.csv")
+    to_learn = original_data.to_dict(orient="records")
+else:
+    to_learn = data.to_dict(orient="records")
 
 
 def next_card():
