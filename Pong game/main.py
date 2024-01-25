@@ -41,4 +41,5 @@ while game_is_on:
     elif ball.xcor() < -400:
         ball.restart()
         scoreboard.r_winner()
+    elif l_winner
 screen.exitonclick()

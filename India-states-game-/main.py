@@ -10,6 +10,7 @@ all_states = data.state.values
 guessed_state = []
 while len(guessed_state) < 28:
     answer_state = screen.textinput(title=f"{len(guessed_state)}/28 states", prompt="Guess the state").title()
+
     if answer_state in all_states:
         guessed_state.append(answer_state)
         marker = turtle.Turtle()
