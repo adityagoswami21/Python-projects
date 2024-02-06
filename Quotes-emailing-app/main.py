@@ -5,10 +5,13 @@ with open("details.txt", 'r') as mail:
     info = mail.readlines()
     user = info[0].rstrip("\n")
     psw = info[1]
+    fnd = info[2]
 
-my_email = f"{user}"
-password = f"{psw}"
+MY_EMAIL = f"{user}"
+PASSWORD = f"{psw}"
+FRIEND = fnd
 
 with smtplib.SMTP("smtp.gmail.com") as connection:
     connection.starttls()
-    connection.login(user=my_email, password=password)
+    connection.login(user=MY_EMAIL, password=PASSWORD)
+
