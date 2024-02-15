@@ -11,7 +11,6 @@ today_day = dt.datetime.today().day
 letters_dir = "letter_templates"
 letters = os.listdir("letter_templates")
 random_letter = random.choice(letters)
-print(random_letter)
 # 2. Check if today matches a birthday in the birthdays.csv
 for index, row in birthday.iterrows():
     name = row["name"]
@@ -22,8 +21,6 @@ for index, row in birthday.iterrows():
             content_read = body.read()
             content_edit = content_read.replace("[NAME]", name)
             print(content_edit)
-
-
 
 # 4. Send the letter generated in step 3 to that person's email address.
 
