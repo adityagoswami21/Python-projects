@@ -24,7 +24,8 @@ for index, row in birthday.iterrows():
 
 # 4. Send the letter generated in step 3 to that person's email address.
 
-
+with smtplib.SMTP("smtp.gmail.com") as connection:
+    connection.starttls()
 
 
 
