@@ -2,7 +2,7 @@ import os
 import smtplib
 import datetime as dt
 import random
-
+from details import my_email, password, friend_email
 import pandas as pd
 
 birthday = pd.read_csv("birthdays.csv")
@@ -24,8 +24,12 @@ for index, row in birthday.iterrows():
 
 # 4. Send the letter generated in step 3 to that person's email address.
 
-with smtplib.SMTP("smtp.gmail.com") as connection:
-    connection.starttls()
+        with smtplib.SMTP("smtp.gmail.com") as connection:
+            connection.starttls()
+            connection.login(user=my_email, password=password)
+            connection.sendmail(from_addr=my_email, to_addrs=friend_email,
+                                msg=f"Subject:Birthday wish!\n\n{content_edit}")
+
 
 
 
