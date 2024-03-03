@@ -1,7 +1,11 @@
 import requests
+import smtplib
 from datetime import datetime
+from details import my_email, password
 MY_LAT = 20.593683
 MY_LONG = 78.962883
+MY_EMAIL = my_email
+MY_PASSWORD = password
 
 
 def is_iss_overhead():
@@ -30,3 +34,6 @@ def is_night():
     if time_now >= sunset or time_now <= sunrise:
         return True
 
+
+if is_iss_overhead() and is_night():
+    connection = smtplib.SMTP("smtp.gmail.com")
