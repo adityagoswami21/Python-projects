@@ -2,6 +2,7 @@ import requests
 import smtplib
 from datetime import datetime
 from details import my_email, password
+import time
 MY_LAT = 20.593683
 MY_LONG = 78.962883
 MY_EMAIL = my_email
@@ -35,5 +36,12 @@ def is_night():
         return True
 
 
-if is_iss_overhead() and is_night():
-    connection = smtplib.SMTP("smtp.gmail.com")
+while True:
+    time.sleep(60)
+    if is_iss_overhead() and is_night():
+        connection = smtplib.SMTP("smtp.gmail.com")
+        connection.starttls()
+        connection.login(MY_EMAIL, MY_PASSWORD)
+        connection.sendmail(from_addr=MY_EMAIL, to_addrs=MY_EMAIL,
+                            msg="Subject:Look up!👆\n\nThe ISS is above you in the sky.")
+
