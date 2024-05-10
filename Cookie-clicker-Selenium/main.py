@@ -11,3 +11,12 @@ five_sec = time.time() + 5
 five_min = time.time() + 60*5
 store = driver.find_elements(By.CSS_SELECTOR, value="#store div")
 items_id = [item.get_attribute("id") for item in store]
+
+while True:
+    cookie.click()
+    if time.time() > five_sec:
+        score = driver.find_element(By.ID, value="money")
+        int_score = int(score.text)
+        print(int_score)
+        break
+
