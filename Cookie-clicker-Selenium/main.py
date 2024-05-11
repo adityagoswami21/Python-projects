@@ -9,9 +9,8 @@ driver.get("https://orteil.dashnet.org/experiments/cookie/")
 cookie = driver.find_element(By.ID, "cookie")
 five_sec = time.time() + 5
 five_min = time.time() + 60*5
-store = driver.find_elements(By.CSS_SELECTOR, value="#store div b")
+store = driver.find_elements(By.CSS_SELECTOR, value="#store div b")[:-1]
 items_id = [item.get_attribute("id") for item in store]
-
 while True:
     cookie.click()
     if time.time() > five_sec:
@@ -21,7 +20,10 @@ while True:
 
         affordable_upgrades = []
         for upgrade in store:
-            upgrade_price = upgrade.text.split("-")[1].strip().replace(",","")
+            upgrade_text = upgrade.text
+            upgrade_price = upgrade_text.split("-")[1].strip().replace(",", "")
             print(upgrade_price)
+            affordable_upgrades.append(int(upgrade_price))
+        print(affordable_upgrades)
         break
 
