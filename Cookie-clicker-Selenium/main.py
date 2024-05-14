@@ -44,3 +44,12 @@ while True:
         highest_id = items_id[cost_of_upgrades.index(highest_upgrade)]
         print(f"highest_id: {highest_id}")
 
+        driver.find_element(By.ID, value=f"{highest_id}").click()
+        five_sec = time.time() + 5
+
+    if time.time() > five_min:
+        cookie_per_sec = driver.find_element(By.ID, value="cps")
+        print(cookie_per_sec.text)
+        break
+
+
