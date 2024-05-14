@@ -24,7 +24,7 @@ while True:
         cost_of_upgrades = []
         for upgrade in driver.find_elements(By.CSS_SELECTOR, value="#store div b")[:-1]:
             upgrade_text = upgrade.text
-            upgrade_price = upgrade_text.split("-")[1].strip().replace(",", "")
+            upgrade_price = int(upgrade_text.split("-")[1].strip().replace(",", ""))
             print(upgrade_price)
             cost_of_upgrades.append(upgrade_price)
         print(cost_of_upgrades)
@@ -33,5 +33,9 @@ while True:
         for n in range(len(cost_of_upgrades)):
             cookie_upgrades[cost_of_upgrades[n]] = items_id[n]
 
-
+        affordable_upgrade = []
+        for cost, iD in cookie_upgrades.items():
+            if int_score > cost:
+                affordable_upgrade.append(cost)
+        print(affordable_upgrade)
 
