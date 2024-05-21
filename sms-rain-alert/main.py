@@ -8,7 +8,7 @@ load_dotenv()
 params = {
     "lat": 13.756331,
     "lon": 100.501762,
-    "appid": os.getenv('api_key'),
+    "appid": os.getenv('API_KEY'),
     "cnt": 4
 }
 
@@ -30,8 +30,8 @@ if will_rain:
     message = client.messages \
                     .create(
                         body="It's going to rain today, Bring an umbrella!☔",
-                        from_=os.getenv("from_no"),
-                        to=os.getenv("to_no")
+                        from_=os.getenv("FROM_NO"),
+                        to=os.getenv("TO_NO")
                     )
 
     print(message.status)
