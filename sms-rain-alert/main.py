@@ -2,6 +2,8 @@ from twilio.rest import Client
 import requests
 import os
 from dotenv import load_dotenv
+account_sid = os.getenv('TWILIO_ACCOUNT_SID')
+auth_token = os.getenv('TWILIO_AUTH_TOKEN')
 load_dotenv()
 params = {
     "lat": 13.756331,
