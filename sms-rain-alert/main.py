@@ -25,3 +25,13 @@ for ids in weather_data['list']:
         will_rain = True
 if will_rain:
     print("Bring an umbrella!")
+    client = Client(account_sid, auth_token)
+
+    message = client.messages \
+                    .create(
+                        body="It's going to rain today, Bring an umbrella!☔",
+                        from_=os.getenv("from_no"),
+                        to=os.getenv("to_no")
+                    )
+
+    print(message.status)
