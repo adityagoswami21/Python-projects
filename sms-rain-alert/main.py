@@ -1,8 +1,12 @@
 import requests
+import os
+from creds import api_key
+from dotenv import load_dotenv
+load_dotenv
 params = {
     "lat": 13.756331,
     "lon": 100.501762,
-    "appid": "56ad33ad4a8d3d456e3487d814194254",
+    "appid": api_key,
     "cnt": 4
 }
 
