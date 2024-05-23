@@ -12,6 +12,7 @@ NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
 
 
 
+
 ## STEP 2: Use https://newsapi.org/docs/endpoints/everything
 # Instead of printing ("Get News"), actually fetch the first 3 articles for the COMPANY_NAME. 
 #HINT 1: Think about using the Python Slice Operator
