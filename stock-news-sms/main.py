@@ -17,11 +17,18 @@ NEWS_ENDPOINT = "https://newsapi.org/v2/everything"
 stock_params = {
     "function": "TIME_SERIES_DAILY",
     "symbol":STOCK,
-    "apikey": os.getenv("STOCK_API")
+    "apikey": os.getenv("STOCK_API"),
+    "outputsize": 2
 
 }
 response = requests.get(STOCK_ENDPOINT, stock_params)
-print(response.json())
+data = response.json()
+print(data)
+# data_list = [value for (key,value) in data.items()]
+# yesterday_close_price = data_list[0]["4. close"]
+# print(yesterday_close_price)
+# day_before_yesterday_price = data_list[1]["4. close"]
+# print(day_before_yesterday_price)
 
 
 
