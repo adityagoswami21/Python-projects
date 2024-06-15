@@ -16,22 +16,30 @@ stock_params = {
     "outputsize": 2
 
 }
+
+news_params = {
+    "q":COMPANY_NAME,
+    "apiKey":os.getenv("NEWS_API")
+}
+
 response = requests.get(STOCK_ENDPOINT, stock_params)
 data = response.json()['Time Series (Daily)']
-# print(data)
+print(data)
 data_list = [value for (key,value) in data.items()]
 # print(data_list)
 yesterday_close_price = float(data_list[0]["4. close"])
-print(yesterday_close_price)
+# print(yesterday_close_price)
 day_before_yesterday_price = float(data_list[1]["4. close"])
-print(day_before_yesterday_price)
+# print(day_before_yesterday_price)
 difference = abs(day_before_yesterday_price - yesterday_close_price)
-print(difference)
+# print(difference)
 difference_percentage = (difference/yesterday_close_price)*100
-print(difference_percentage)
+# print(difference_percentage)
 
-if difference_percentage > 5:
-    print("Get News!")
+if difference_percentage > 2:
+    response = requests.get(NEWS_ENDPOINT, news_params)
+    news_data = response.json()['articles'][:3]
+    print(news_data)
 
 
 ## STEP 2: Use https://newsapi.org/docs/endpoints/everything
