@@ -1,6 +1,8 @@
 import requests
 import os
 from dotenv import load_dotenv
+import os
+from twilio.rest import Client
 
 load_dotenv()
 STOCK = "TSLA"
@@ -42,15 +44,25 @@ if difference_percentage > 2:
     print(news_data)
 
 
-## STEP 2: Use https://newsapi.org/docs/endpoints/everything
-# Instead of printing ("Get News"), actually fetch the first 3 articles for the COMPANY_NAME. 
-#HINT 1: Think about using the Python Slice Operator
-
 
 
 ## STEP 3: Use twilio.com/docs/sms/quickstart/python
 # Send a separate message with each article's title and description to your phone number. 
 #HINT 1: Consider using a List Comprehension.
+# Download the helper library from https://www.twilio.com/docs/python/install
+
+account_sid = os.environ['TWILIO_ACCOUNT_SID']
+auth_token = os.environ['TWILIO_AUTH_TOKEN']
+client = Client(account_sid, auth_token)
+
+message = client.messages \
+                .create(
+                     body="Join Earth's mightiest heroes. Like Kevin Bacon.",
+                     from_=os.environ['FROM_NUM'],
+                     to=os.environ['TO_NUM']
+                 )
+
+print(message.sid)
 
 
 
