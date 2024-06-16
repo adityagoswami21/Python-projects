@@ -33,23 +33,28 @@ yesterday_close_price = float(data_list[0]["4. close"])
 
 day_before_yesterday_price = float(data_list[1]["4. close"])
 
-difference = abs(day_before_yesterday_price - yesterday_close_price)
+difference = day_before_yesterday_price - yesterday_close_price
 
-difference_percentage = (difference/yesterday_close_price)*100
+indicator = None
+if difference > 0:
+    indicator = "🔺"
+else:
+    indicator = "🔻"
+
+
+difference_percentage = round((abs(difference)/yesterday_close_price)*100)
 
 
 if difference_percentage > 1:
     response = requests.get(NEWS_ENDPOINT, news_params)
     news_data = response.json()['articles'][:3]
     
+    msg_body =[f"{STOCK} {indicator} {difference_percentage}% \nHeadline: {article['title']}. \nBrief: {article['description']}" for article in news_data]
 
-
-
-
-    msg_body =[f"Headline: {article['title']}. \nBrief: {article['description']}" for article in news_data]
     account_sid = os.environ['TWILIO_ACCOUNT_SID']
     auth_token = os.environ['TWILIO_AUTH_TOKEN']
     client = Client(account_sid, auth_token)
+    
     for article in msg_body:
         message = client.messages \
                         .create(
@@ -60,16 +65,4 @@ if difference_percentage > 1:
 
         print(message.sid)
 
-
-
-#Optional: Format the SMS message like this: 
-"""
-TSLA: 🔺2%
-Headline: Were Hedge Funds Right About Piling Into Tesla Inc. (TSLA)?. 
-Brief: We at Insider Monkey have gone over 821 13F filings that hedge funds and prominent investors are required to file by the SEC The 13F filings show the funds' and investors' portfolio positions as of March 31st, near the height of the coronavirus market crash.
-or
-"TSLA: 🔻5%
-Headline: Were Hedge Funds Right About Piling Into Tesla Inc. (TSLA)?. 
-Brief: We at Insider Monkey have gone over 821 13F filings that hedge funds and prominent investors are required to file by the SEC The 13F filings show the funds' and investors' portfolio positions as of March 31st, near the height of the coronavirus market crash.
-"""
 
