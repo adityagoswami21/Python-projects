@@ -26,7 +26,7 @@ news_params = {
 
 response = requests.get(STOCK_ENDPOINT, stock_params)
 data = response.json()['Time Series (Daily)']
-print(data)
+# print(data)
 data_list = [value for (key,value) in data.items()]
 # print(data_list)
 yesterday_close_price = float(data_list[0]["4. close"])
@@ -38,10 +38,10 @@ difference = abs(day_before_yesterday_price - yesterday_close_price)
 difference_percentage = (difference/yesterday_close_price)*100
 # print(difference_percentage)
 
-if difference_percentage > 2:
+if difference_percentage > 1:
     response = requests.get(NEWS_ENDPOINT, news_params)
     news_data = response.json()['articles'][:3]
-    print(news_data)
+    # print(news_data[0]['title'])
 
 
 
@@ -51,18 +51,19 @@ if difference_percentage > 2:
 #HINT 1: Consider using a List Comprehension.
 # Download the helper library from https://www.twilio.com/docs/python/install
 
-account_sid = os.environ['TWILIO_ACCOUNT_SID']
-auth_token = os.environ['TWILIO_AUTH_TOKEN']
-client = Client(account_sid, auth_token)
+    msg_body = news_data[0]['title']
+    account_sid = os.environ['TWILIO_ACCOUNT_SID']
+    auth_token = os.environ['TWILIO_AUTH_TOKEN']
+    client = Client(account_sid, auth_token)
 
-message = client.messages \
-                .create(
-                     body="Join Earth's mightiest heroes. Like Kevin Bacon.",
-                     from_=os.environ['FROM_NUM'],
-                     to=os.environ['TO_NUM']
-                 )
+    message = client.messages \
+                    .create(
+                        body=msg_body,
+                        from_=os.environ['FROM_NUM'],
+                        to=os.environ['TO_NUM']
+                    )
 
-print(message.sid)
+    print(message.sid)
 
 
 
