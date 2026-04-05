@@ -6,8 +6,8 @@ account_sid = os.getenv('TWILIO_ACCOUNT_SID')
 auth_token = os.getenv('TWILIO_AUTH_TOKEN')
 load_dotenv()
 params = {
-    "lat": 13.756331,
-    "lon": 100.501762,
+    "lat": 23.344101,
+    "lon": 85.309563,
     "appid": os.getenv('API_KEY'),
     "cnt": 4
 }
