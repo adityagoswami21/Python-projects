@@ -17,3 +17,23 @@ def check_win(player):
         if all(board[i] == player for i in condition):
             return True
     return False
+
+def play_game():
+    current_player = "X"
+    for _ in range(9):
+        print_board()
+        move = int(input(f"Player {current_player}, enter your move (1-9): ")) - 1
+        if board[move] == " ":
+            board[move] = current_player
+            if check_win(current_player):
+                print_board()
+                print(f"Player {current_player} wins!")
+                return
+            current_player = "O" if current_player == "X" else "X"
+        else:
+            print("Invalid move. Try again.")
+    print_board()
+    print("It's a tie!")
+
+if __name__ == "__main__":
+    play_game()
