@@ -12,7 +12,7 @@ def open_image():
 
 def add_watermark():
     global img
-    watermark = Image.open("watermark.jpg").convert("RGBA")
+    watermark = Image.open("watermark.png").convert("RGBA")
     watermark = watermark.resize((100, 100))
     img = img.convert("RGBA")
     img.paste(watermark, (10, 10), watermark)
