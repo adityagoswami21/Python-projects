@@ -29,3 +29,9 @@ root.title("Watermark App")
 
 panel = Label(root)
 panel.pack()
+
+Button(root, text="Open Image", command=open_image).pack()
+Button(root, text="Add Watermark", command=add_watermark).pack()
+Button(root, text="Save Image", command=save_image).pack()
+
+root.mainloop()
