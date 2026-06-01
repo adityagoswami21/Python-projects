@@ -21,7 +21,8 @@ def add_watermark():
     panel.config(image=preview)
     panel.image = preview
 
-
+def save_image():
+    img.convert("RGB").save("watermarked_image.jpg")
 
 root = Tk()
 root.title("Watermark App")
