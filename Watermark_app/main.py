@@ -10,7 +10,16 @@ def open_image():
     img_display = ImageTk.PhotoImage(img)
     panel.config(image=img_display)
 
+def add_watermark():
+    global img
+    watermark = Image.open("watermark.jpg").convert("RGBA")
+    watermark = watermark.resize((100, 100))
+    img = img.convert("RGBA")
+    img.paste(watermark, (10, 10), watermark)
 
+    preview = ImageTk.PhotoImage(img)
+    panel.config(image=preview)
+    panel.image = preview
 
 
 
