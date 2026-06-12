@@ -1,10 +1,14 @@
 from turtle import Turtle, Screen
+from bricks import BrickManager
 from paddle import Paddle
 from ball import Ball
 import time
 turtle = Turtle()
 screen = Screen()
+screen.tracer(0)
 ball = Ball()
+brick_manager = BrickManager()
+create_bricks = brick_manager.create_bricks()
 screen.bgcolor("black")
 screen.setup(width=800, height=600)
 screen.title("Breakout Game")
@@ -39,5 +43,10 @@ while game_is_on:
         ball.move_speed = 0.1
     
     # detect collision with bricks (not implemented yet)
-    
-
+    for brick in brick_manager.bricks:
+        if ball.distance(brick) < 40:
+            ball.bounce_y()
+            brick.goto(1000, 1000)  # Move the brick off-screen
+            brick_manager.bricks.remove(brick)  # Remove the brick from the list
+        
+            

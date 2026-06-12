@@ -9,8 +9,8 @@ class Ball(Turtle):
         self.penup()
         self.speed(0)
         self.move_speed = 0.1
-        self.dx = 10  # Change in x (horizontal movement)
-        self.dy = 10  # Change in y (vertical movement)
+        self.dx = 15  # Change in x (horizontal movement)
+        self.dy = 15  # Change in y (vertical movement)
 
     # Move the ball based on its current direction
     def move(self):
@@ -30,5 +30,5 @@ class Ball(Turtle):
     def reset_position(self, position):
         self.goto(position)
         self.move_speed = 0.1
-        self.dx = 10
-        self.dy = 10
+        self.dx = 15
+        self.dy = 15
