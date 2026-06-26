@@ -2,11 +2,14 @@ from turtle import Turtle, Screen
 from bricks import BrickManager
 from paddle import Paddle
 from ball import Ball
+from scoreboard import Scoreboard
 import time
 turtle = Turtle()
 screen = Screen()
 screen.tracer(0)
 ball = Ball()
+scoreboard = Scoreboard()
+scoreboard.draw_lives()
 brick_manager = BrickManager()
 create_bricks = brick_manager.create_bricks()
 screen.bgcolor("black")
@@ -39,14 +42,26 @@ while game_is_on:
     # Detect if the ball goes out of bounds
     if ball.ycor() < -300:
         ball.penup()
+        scoreboard.lives -= 1
         ball.reset_position(paddle.position()+ (0, 30))
         ball.move_speed = 0.1
-    
+        scoreboard.draw_lives()  
+        scoreboard.update_scoreboard()
+        if scoreboard.lives == 0:
+            scoreboard.clear()
+            scoreboard.goto(0, 0)
+            scoreboard.hideturtle()
+            brick_manager.clear_bricks()  # Clear all bricks from the screen
+            paddle.hideturtle()  # Hide the paddle
+            ball.hideturtle()  # Hide the ball
+            scoreboard.write("GAME OVER", align="center", font=("Courier", 36, "normal"))
+            game_is_on = False
+        
     # detect collision with bricks (not implemented yet)
     for brick in brick_manager.bricks:
         if ball.distance(brick) < 40:
             ball.bounce_y()
             brick.goto(1000, 1000)  # Move the brick off-screen
             brick_manager.bricks.remove(brick)  # Remove the brick from the list
-        
+            scoreboard.increase_score()  # Increase the score
             

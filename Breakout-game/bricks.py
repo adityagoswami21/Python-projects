@@ -18,5 +18,8 @@ class BrickManager:
                 brick.goto(-350 + col * 70, 250 - row * 30)
                 self.bricks.append(brick)
         
-            
+    def clear_bricks(self):
+        for brick in self.bricks:
+            brick.goto(1000, 1000)  # Move the brick off-screen
+        self.bricks.clear()  # Clear the list of bricks
             
